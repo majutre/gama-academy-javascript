@@ -4,6 +4,6 @@
 
 
 
-[Módulo 04: Javascript básico]()
+[Módulo 04: Javascript básico](https://github.com/majutre/gama-academy-javascript/tree/master/modulo-04/desafio-cpf)
 
-[Módulo 05: Javascript intermediário]()
+[Módulo 05: Javascript intermediário](https://github.com/majutre/gama-academy-javascript/tree/master/modulo-05)
