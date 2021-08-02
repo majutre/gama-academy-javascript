@@ -1,6 +1,6 @@
 # Gama Academy - JavaScript
 
-### Repositório de exercícios do curso de Javascript da Gama Academy.
+### Repositório de estudos do curso de Javascript da Gama Academy.
 
 
 
