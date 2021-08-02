@@ -1,40 +1,63 @@
-function validacao(){
+function validaCpf(cpf) {
+    var numeros, digitos, soma, i, resultado, digitos_iguais;
+    digitos_iguais = 1;
+
+    if (cpf.length < 11) {
+        return false;
+    }
+
+    for (i = 0; i < cpf.length - 1; i++) {
+        if (cpf.charAt(i) != cpf.charAt(i + 1)) {
+            digitos_iguais = 0;
+            break;
+        }
+    }
+
+    if (!digitos_iguais) {
+        numeros = cpf.substring(0, 9);
+        digitos = cpf.substring(9);
+        soma = 0;
+
+        for (i = 10; i > 1; i--) {
+            soma += numeros.charAt(10 - i) * i;
+        }
+
+        resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+
+        if (resultado != digitos.charAt(0)) {
+            return false;
+        }
+
+        numeros = cpf.substring(0, 10);
+        soma = 0;
+
+        for (i = 11; i > 1; i--) {
+            soma += numeros.charAt(11 - i) * i;
+        }
+
+        resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+        if (resultado != digitos.charAt(1)) {
+            return false;
+        }
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function validacao() {
     console.log('Iniciando função de validação.');
 
-    let cpf = document.getElementById('cpf_digitado').value;
-    
-    let resultadoDaValidacao = validaCpf(cpf);
+    document.getElementById('success').style.display = 'none';
+    document.getElementById('error').style.display = 'none';
 
-    if (resultadoDaValidacao) {
+    let cpf = document.getElementById('cpf_digitado').value;
+
+    if (validaCpf(cpf)) {
         document.getElementById('success').style.display = 'block';
     } else {
         document.getElementById('error').style.display = 'block'
     }
-}
 
-//37142811854 - CPF de teste
-function validaCpf(cpf){
-    console.log('Você digitou', cpf.length, 'caracteres.');
-    if (cpf.length != 11) {
-        return false;
-    } else {
-        let numeros = cpf.substring(0, 9);
-        let digitos = cpf.substring(9);
-
-        let soma = 0;
-        for (let i = 10; i > 1; i--) {
-            soma += numeros.charAt(10 - i) * i;
-        }
-        console.log('SOMA:', soma);
-
-        let resultado = (soma % 11) < 2 ? 0 : 11 - (soma % 11);
-
-        //validação do primeiro dígito
-        if (resultado != digitos.charAt(0)) {
-            return false
-        }
-
-        console.log(digitos.toString().charAt(0) + ' é a primeira posição da variável soma.');
-        return true;
-    }
+    console.log('Fim da validação.');
 }
